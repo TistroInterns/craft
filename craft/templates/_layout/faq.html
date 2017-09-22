@@ -1,0 +1,64 @@
+<br>
+<br>
+
+
+  
+<br><h1><p align="center">For any questions,Please post here!</p></h1>
+
+{% macro errorList(errors) %}
+    {% if errors %}
+        <ul class="errors">
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+
+{% from _self import errorList %}
+
+<form method="post" accept-charset="UTF-8"form class="pure-form" >
+    {{ getCsrfInput() }}
+      <fieldset class="pure-group">
+    <input type="hidden" name="action" value="entries/saveEntry">
+    <input type="hidden" name="redirect" value="viewentry/{slug}">
+    <input type="hidden" name="sectionId" value="2">
+    <input type="hidden" name="enabled" value="1">
+</fieldset>
+   <fieldset class="pure-group">
+    <label for="title">Title</label>
+    <input id="title" type="text" name="title" 
+        {%- if entry is defined %} value="{{ entry.title }}"{% endif -%}><br>
+
+    {% if entry is defined %}
+        {{ errorList(entry.getErrors('title')) }}
+    {% endif %}
+
+</fieldset>
+
+ <fieldset class="pure-group">
+   <br> <label for="body">Body</label>
+    <textarea id="body" name="fields[body]" class="pure-input-1">
+        {%- if entry is defined %}{{ entry.body }}{% endif -%}
+    </textarea><br>
+
+    {% if entry is defined %}
+        {{ errorList(entry.getErrors('body')) }}
+    {% endif %}
+
+    </fieldset>
+
+
+ <fieldset class="pure-group">
+<br><label for="title">Reply</label>
+    <input id="reply" type="text" name="reply"  class="pure-input-1"
+        {%- if entry is defined %} value="{{ entry.reply }}"{% endif -%}><br>
+
+    {% if entry is defined %}
+        {{ errorList(entry.getErrors('title')) }}
+    {% endif %}
+     </fieldset>
+
+  <br>  <input type="submit" value="Publish">
+</form>
+
