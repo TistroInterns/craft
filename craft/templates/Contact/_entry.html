@@ -13,12 +13,12 @@
  # http://craftcms.com/docs/routing
  #}
 
-{% extends "_layout/Contact" %}
+{% extends "_layout/Contact.twig" %}
 {% block content %}
 	<article>
 		<h1>{{ entry.title }}</h1><br>
 		{{ entry.body }}
-	
+	{{ getHeadJs() }}
 	</article>
 {% endblock %}
 

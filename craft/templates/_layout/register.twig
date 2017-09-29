@@ -1,0 +1,116 @@
+
+
+<!--header-->
+
+{% include '_layout/header.twig'%}
+<!--body-->
+<style>
+    .form-control {
+  display: block;
+  width: 50%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #464a4c;
+  background-color: #fff;
+  background-image: none;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #7F7FFF;
+  border-color: #5cb85c;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+    </style>
+
+<form method="post" accept-charset="UTF-8"  class="pure-form pure-form-stacked"  >
+    {{ getCsrfInput() }}
+    <input type="hidden" name="action" value="users/saveUser">
+    <input type="hidden" name="redirect" value="login">
+
+    {% macro errorList(errors) %}
+        {% if errors %}
+            <ul class="errors">
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endmacro %}
+
+    {% from _self import errorList %}
+<fieldset>
+        <legend>Register</legend>
+<h3><p align="center">Please enter your details to register your account</p></h3>
+
+
+<div class="pure-g">
+<div class="pure-u-1 pure-u-md-1-3">
+    <h3><label for="username">Full Names</label></h3>
+    <input id="fullnames" type="text" name="fullnames" class="form-control"  placeholder="Please enter your Full Names!" class="pure-u-23-24" 
+        {%- if account is defined %} value="{{ account.fullnames }}"{% endif -%}>
+
+    {% if account is defined %}
+        {{ errorList(account.getErrors('fullnames')) }}
+    {% endif %}
+</div>
+
+
+<div class="pure-u-1 pure-u-md-1-3">
+    <h3><label for="username">Username</label></h3>
+    <input id="username" type="text" name="username" placeholder="Please enter your username!" class="form-control" class="pure-u-23-24" 
+        {%- if account is defined %} value="{{ account.username }}"{% endif -%}>
+
+    {% if account is defined %}
+        {{ errorList(account.getErrors('username')) }}
+    {% endif %}
+</div>
+
+
+ <div class="pure-u-1 pure-u-md-1-3">
+    <h3><label for="email">Email</label></h3>
+    <input id="email" type="text" name="email"  class="form-control"  placeholder="Please enter your email address!" class="pure-u-23-24"
+        {%- if account is defined %} value="{{ account.email }}"{% endif %}>
+
+    {% if account is defined %}
+        {{ errorList(account.getErrors('email')) }}
+    {% endif %}
+  </div>
+
+<div class="pure-u-1 pure-u-md-1-3">
+    <h3><label for="password">Password</label></h3>
+    <input id="password" type="password" name="password" class="form-control"   placeholder="Please enter your password!"    >      
+
+    {% if account is defined %}
+        {{ errorList(account.getErrors('password')) }}
+    {% endif %}
+</div>
+
+<div class="pure-u-1 pure-u-md-1-3">
+    <h3><label for="confirmpassword">Confirm Password</label></h3>
+    <input id="password" type="password" name="confirmpassword"   class="form-control"   placeholder="Please confirm your password!"    >      
+
+    {% if account is defined %}
+        {{ errorList(account.getErrors('confirmpassword')) }}
+    {% endif %}
+</div>
+
+   <br> <input type="submit" value="Register"  class="btn-success"   >
+        </fieldset>
+</form>
+
+<!--footer-->

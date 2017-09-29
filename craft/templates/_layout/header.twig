@@ -1,0 +1,22 @@
+
+
+      <div class="wrapper">
+   <class header="HEADER">
+       <h1><a href="{{siteUrl}}"> {{siteName}}</a></h1>
+       
+       <nav>
+           <ul>
+<a href="{{url(Home)}}" {% if craft.request.firstSegment =='Home' %} class="active"{% endif %}>Home</a>
+ <a href="{{url(Downloals)}}" {%if craft.request.firstSegment =='Downloads' %} class="active"{% endif %}>Downloads</a>
+<a href="{{url(Testimonials)}}" {%if craft.request.thirdSegment =='Testimonials' %} class="active"{% endif %}>Testimonials</a>
+ <a href="{{url(FAQ)}}" {%if craft.request.fourthSegment =='FAQ' %} class="active"{% endif %}>FAQ</a>
+<a href="{{url(Contact)}}" {%if craft.request.fifthSegment =='Contact' %} class="active"{% endif %}>Contact us</a>
+       
+  
+       
+       </ul>
+       </nav>
+       </header>
+
+
+

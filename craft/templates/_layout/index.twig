@@ -1,0 +1,9 @@
+{%extends 'home.html'%}
+{% set headHtml = '<script src="{{ url('my-app/app/components/header.js') }}"></script>' %}
+
+{% block head %}
+    {{ parent() }}
+
+    <!-- Scripts -->
+    <script src="{{ url('my-app/app/components/header.js') }}"></script>
+{% endblock %}
